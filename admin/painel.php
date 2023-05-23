@@ -1,6 +1,17 @@
 <?php
 // Painel de administração
+session_start();
+// Verificar se a sessão NÃO existe: 
+if (!isset($_SESSION['dados'])) {
+    header('Location: index.php');
+    exit;
+}
 
+
+// puxar as categorias
+require_once('classes/Categoria.class.php');
+$c = new Categoria();
+$categorias = $c->Listar();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -67,33 +78,34 @@
     <!-- Modal de Cadastro -->
     <div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="modalCadastroLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalCadastroLabel">Cadastro de Produto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
+            <form action="actions/cadastrar_produto.php" method="POST" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCadastroLabel">Cadastro de Produto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
                             <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto">
                         </div>
                         <div class="form-group">
                             <label for="fotoProduto">Foto</label>
-                            <input type="file" class="form-control-file" id="fotoProduto">
+                            <input name="foto" type="file" class="form-control-file" id="fotoProduto">
                         </div>
                         <div class="form-group">
                             <label for="descricaoProduto">Descrição</label>
-                            <textarea class="form-control" id="descricaoProduto" rows="3"></textarea>
+                            <textarea name="descricao" class="form-control" id="descricaoProduto" rows="3"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="categoriaProduto">Categoria</label>
-                            <select class="form-control" id="categoriaProduto">
+                            <select class="form-control" id="categoriaProduto" name="id_categoria">
+                                <?php foreach ($categorias as $categoria) { ?>
+                                    <option value="<?= $categoria['id']; ?>"><?= $categoria['nome']; ?></option>
+                                <?php } ?>
                                 <option value="1">Categoria 1</option>
-                                <option value="2">Categoria 2</option>
-                                <option value="3">Categoria 3</option>
                             </select> <br>
                             <div class="row">
                                 <div class="col d-flex justify-content-end">
@@ -103,7 +115,7 @@
                         </div>
                         <div class="form-group">
                             <label for="estoqueProduto">Estoque</label>
-                            <input type="number" class="form-control" id="estoqueProduto" placeholder="Digite a quantidade em estoque">
+                            <input name="estoque" type="number" class="form-control" id="estoqueProduto" placeholder="Digite a quantidade em estoque">
                         </div>
                         <div class="form-group">
                             <label for="precoProduto">Preço</label>
@@ -111,39 +123,39 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">R$</span>
                                 </div>
-                                <input type="number" class="form-control" id="precoProduto" placeholder="Digite o preço">
+                                <input name="preco" type="number" class="form-control" id="precoProduto" placeholder="Digite o preço">
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar</button>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div class="modal fade" id="modalAddCategoria" tabindex="-1" role="dialog" aria-labelledby="modalAddCategoriaLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalAddCategoriaLabel">Adicionar Categoria</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
+                <form action="../actions/cadastrar_categoria.php" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAddCategoriaLabel">Adicionar Categoria</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="nomeCategoria">Nome da Categoria</label>
-                            <input type="text" class="form-control" id="nomeCategoria" placeholder="Digite o nome da categoria">
+                            <input type="text" name="nome" class="form-control" id="nomeCategoria" placeholder="Digite o nome da categoria">
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Adicionar</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Adicionar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
