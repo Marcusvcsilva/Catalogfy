@@ -44,7 +44,7 @@
         </div>
         <div class="row justify-content-center mt-3">
             <div class="col-4 conteudo">
-                <form id="formLogin" action="logar.php" method="post">
+                <form id="formLogin" action="../actions/logar.php" method="post">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
@@ -55,7 +55,7 @@
                         <input type="password" class="form-control" id="senha" name="senha">
                     </div>
                     <div class="form-group">
-                        <button type="button" id="btnEntrar" class="form-control btn btn-primary rounded submit px-3">Entrar</button>
+                        <button type="submit" id="btnEntrar" class="form-control btn btn-primary rounded submit px-3">Entrar</button>
                     </div>
                     <div class="mb-3 mt-3">
                         <p class="text-center">Não possui conta no sistema? <a href="#" id="btnCadastroToggle">Cadastre-se</a></p>
@@ -78,7 +78,7 @@
                         <input type="password" class="form-control" id="senhaCad" name="senha">
                     </div>
                     <div class="form-group">
-                        <button type="button" class="form-control btn btn-primary rounded submit px-3" id="btnCadastrar">Cadastrar</button>
+                        <button type="input" class="form-control btn btn-primary rounded submit px-3" id="btnCadastrar">Cadastrar</button>
                     </div>
                     <div class="mb-3 mt-3">
                         <p class="text-center">Já possui conta? <a href="#" id="btnLoginToggle">Entrar</a></p>
