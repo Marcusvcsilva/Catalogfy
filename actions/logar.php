@@ -1,8 +1,8 @@
 <?php
 
-if ($SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    require_once('Banco.class.php');
+    require_once('../admin/classes/Usuario.class.php');
     $u = new Usuario();
     $u->email = $_POST['email'];
     $u->senha = $_POST['senha'];
@@ -16,7 +16,7 @@ if ($SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     } else {
 
-        header("Location: ../admin/index.php");
+        header('Location: ../admin/index.php');
         exit();
     }
 }
