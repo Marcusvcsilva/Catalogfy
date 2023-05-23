@@ -11,7 +11,7 @@ class Usuario{
         // Trabalhar com o banco:
         // Conectando:
         $banco = Banco::conectar();
-        // Transformar a string em comando sql:
+        // Transformar a string em comando sql
         $comando = $banco->prepare($sql);
         // Executar e subsitituir os coringas (?):
         $hash = hash ('sha256', $this->senha);
@@ -20,7 +20,6 @@ class Usuario{
         Banco::desconectar();
     }
     public function Logar(){
-        // Copiado do listar()
         $banco = Banco::conectar();
         $sql = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
         $comando = $banco->prepare($sql);
