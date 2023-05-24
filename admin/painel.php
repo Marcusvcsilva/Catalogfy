@@ -7,6 +7,14 @@ if (!isset($_SESSION['dados'])) {
     exit;
 }
 
+require_once('classes/Produto.class.php');
+
+$p = new Produto();
+
+// Guardar o array de resultado em uma variavel 
+
+$resultado = $p->Listar();
+
 
 // puxar as categorias
 require_once('classes/Categoria.class.php');
@@ -36,7 +44,7 @@ $categorias = $c->Listar();
         <div class="row mb-3">
             <div class="col d-flex justify-content-end">
                 <button type="button" class="btn btn-success mx-1" data-toggle="modal" data-target="#modalCadastro"><i class="bi bi-plus-circle"></i> Cadastrar Produto</button>
-                <a class="btn btn-danger mx-1 text-white" href="#"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                <a class="btn btn-danger mx-1 text-white" href="../actions/logout.php"><i class="bi bi-box-arrow-right"></i> Sair</a>
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -49,36 +57,30 @@ $categorias = $c->Listar();
                     <th>Categoria</th>
                     <th>Estoque</th>
                     <th>Preço</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($resultado as $produto){ ?>
                 <tr>
-                    <td>1</td>
-                    <td><img src="https://via.placeholder.com/150x150.png" alt="Produto 1"></td>
-                    <td>Produto 1</td>
-                    <td>Descrição do Produto 1</td>
-                    <td>Categoria 1</td>
-                    <td>10</td>
-                    <td>R$ 100,00</td>
+                    <td><?=$produto['id'];?></td>
+                    <td><?=$produto['foto'];?></td>
+                    <td><?=$produto['nome'];?></td>
+                    <td><?=$produto['descricao'];?></td>
+                    <td><?=$produto['id_categoria'];?></td>
+                    <td><?=$produto['estoque'];?></td>
+                    <td><?=$produto['preco'];?></td>
+                    <td><a href="../actions/editar_produto.php?id=<?=$produto['id'];?>">Editar</a>  |  <a href="../actions/deletar.php?id=<?=$produto['id'];?>">Excluir</a></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><img src="https://via.placeholder.com/150x150.png" alt="Produto 2"></td>
-                    <td>Produto 2</td>
-                    <td>Descrição do Produto 2</td>
-                    <td>Categoria 2</td>
-                    <td>5</td>
-                    <td>R$ 50,00</td>
-                </tr>
+                <?php } ?>
             </tbody>
         </table>
-
     </div>
 
     <!-- Modal de Cadastro -->
     <div class="modal fade" id="modalCadastro" tabindex="-1" role="dialog" aria-labelledby="modalCadastroLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="actions/cadastrar_produto.php" method="POST" enctype="multipart/form-data">
+            <form action="../actions/cadastrar_produto.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalCadastroLabel">Cadastro de Produto</h5>
@@ -89,7 +91,7 @@ $categorias = $c->Listar();
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nomeProduto">Nome</label>
-                            <input type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto">
+                            <input name="nome" type="text" class="form-control" id="nomeProduto" placeholder="Digite o nome do produto">
                         </div>
                         <div class="form-group">
                             <label for="fotoProduto">Foto</label>
