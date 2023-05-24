@@ -13,7 +13,7 @@ class Produto{
     public $id_usuario;
 
     public function Cadastrar(){
-        $sql = "INSERT INTO produtos (nome, estoque, descricao, preco, foto, id_categoria, id_usuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO produtos (nome, estoque, descricao, preco, foto, id_categoria, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
         // Trabalhar com o banco:
         // Conectando:
         $banco = Banco::conectar();
@@ -21,6 +21,50 @@ class Produto{
         $comando->execute(array($this->nome, $this->estoque, $this->descricao, $this->preco, $this->foto, $this->id_categoria, $this->id_usuario));
         // Desconectar do banco:
         Banco::desconectar();
+    }
+
+    public function Listar(){
+        $banco = Banco::conectar();
+        $sql = "SELECT * FROM produtos";
+        $comando = $banco->prepare($sql);
+        $comando->execute();
+        // "Salvar" o resultado da consulta (tabela) na $resultado
+        $resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
+        Banco::desconectar();
+        return $resultado;
+    }
+
+    public function Atualizar(){
+        $banco = Banco::conectar();
+        $sql = "UPDATE produtos SET nome = ?, estoque = ?, descricao = ? , preco = ?, foto = ?, id_categoria = ? WHERE id = ?";
+        $banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $comando = $banco->prepare($sql);
+        $comando->execute(array($this->nome, $this->estoque, $this->descricao, $this->preco, $this->foto, $this->id_categoria, $this->id));
+        Banco::desconectar();
+        // Retornar quantidade de linhas apagadas:
+        return $comando->rowCount();
+    }
+
+    public function Deletar(){
+        $banco = Banco::conectar();
+        $sql = "DELETE FROM produtos WHERE id = ?";
+        $banco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $comando = $banco->prepare($sql);
+        $comando->execute(array($this->id));
+        Banco::desconectar();
+        // Retornar quantidade de linhas apagadas:
+        return $comando->rowCount();
+    }
+
+    public function BuscarPorID(){
+        $banco = Banco::conectar();
+        $sql = "SELECT * FROM produtos WHERE id = ?";
+        $comando = $banco->prepare($sql);
+        $comando->execute(array($this->id));
+        // "Salvar" o resultado da consulta (tabela) na $resultado
+        $resultado = $comando->fetchAll(PDO::FETCH_ASSOC);
+        Banco::desconectar();
+        return $resultado;
     }
 }
 
