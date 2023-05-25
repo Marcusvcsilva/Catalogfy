@@ -42,30 +42,30 @@ if(isset($_SESSION['dados'])){
     
     <h1>Formulário de Edição</h1>
 
-    <form action="actions/editar_contato.php" method="POST">
+    <form action="../actions/editar_produto.php" method="POST">
       <div class="form-group">
         <label for="nome">Nome:</label>
         <input value="<?=$resultado[0]["nome"] ?>" type="text" class="form-control" id="nome" name="nome">
       </div>
       <div class="form-group">
         <label for="foto">Foto:</label>
-        <input value="<?=$resultado[0][""] ?>" type="email" class="form-control" id="email" name="email">
+        <input value="<?=$resultado[0]["foto"] ?>" type="email" class="form-control" id="email" name="email">
       </div>
       <div class="form-group">
         <label for="descricao">Descrição:</label>
-        <input value="<?=$resultado[0]["telefone"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["descricao"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
       </div>
       <div class="form-group">
         <label for="categoria">Categoria:</label>
-        <input value="<?=$resultado[0]["telefone"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["categoria"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
       </div>
       <div class="form-group">
         <label for="estoque">Estoque:</label>
-        <input value="<?=$resultado[0]["telefone"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["estoque"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
       </div>
       <div class="form-group">
         <label for="preco">Preço:</label>
-        <input value="<?=$resultado[0]["telefone"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["preco"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
       </div>
       <input value="<?=$resultado[0]["id"] ?>" type="hidden" name="id" id="id">
       <button type="submit" class="btn btn-primary">Editar</button>
