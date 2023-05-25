@@ -8,6 +8,7 @@ if (!isset($_SESSION['dados'])) {
 }
 
 require_once('classes/Produto.class.php');
+require_once('../alertas.inc.php');
 
 $p = new Produto();
 
@@ -64,13 +65,13 @@ $categorias = $c->Listar();
                 <?php foreach($resultado as $produto){ ?>
                 <tr>
                     <td><?=$produto['id'];?></td>
-                    <td><?=$produto['foto'];?></td>
+                    <td><img src="../img/<?=$produto['foto'];?>" alt="<?= $produto['nome']; ?>"></td>
                     <td><?=$produto['nome'];?></td>
                     <td><?=$produto['descricao'];?></td>
-                    <td><?=$produto['id_categoria'];?></td>
+                    <td><?=$produto['categoria'];?></td>
                     <td><?=$produto['estoque'];?></td>
                     <td><?=$produto['preco'];?></td>
-                    <td><a href="../actions/editar_produto.php?id=<?=$produto['id'];?>">Editar</a>  |  <a href="../actions/deletar.php?id=<?=$produto['id'];?>">Excluir</a></td>
+                    <td><a href="/admin/editar.php">Editar</a>  |  <a href="deletar.php" onclick="confirmar(<?= $produto['id']; ?>)">Excluir</a></td>
                 </tr>
                 <?php } ?>
             </tbody>
