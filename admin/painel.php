@@ -8,7 +8,7 @@ if (!isset($_SESSION['dados'])) {
 }
 
 require_once('classes/Produto.class.php');
-require_once('../alertas.inc.php');
+
 
 $p = new Produto();
 
@@ -71,7 +71,7 @@ $categorias = $c->Listar();
                     <td><?=$produto['categoria'];?></td>
                     <td><?=$produto['estoque'];?></td>
                     <td><?=$produto['preco'];?></td>
-                    <td><a href="/admin/editar.php">Editar</a>  |  <a href="deletar.php" onclick="confirmar(<?= $produto['id']; ?>)">Excluir</a></td>
+                    <td><a href="../admin//editar.php?id=<?=$produto['id'];?>">Editar</a>  |  <a href="../actions/deletar.php?id=<?=$produto['id'];?>" onclick="confirmar(<?= $produto['id']; ?>)">Excluir</a></td>
                 </tr>
                 <?php } ?>
             </tbody>
@@ -108,7 +108,6 @@ $categorias = $c->Listar();
                                 <?php foreach ($categorias as $categoria) { ?>
                                     <option value="<?= $categoria['id']; ?>"><?= $categoria['nome']; ?></option>
                                 <?php } ?>
-                                <option value="1">Categoria 1</option>
                             </select> <br>
                             <div class="row">
                                 <div class="col d-flex justify-content-end">
@@ -166,6 +165,7 @@ $categorias = $c->Listar();
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <?php require_once('../alertas.inc.php'); ?>
 </body>
 
 </html>
