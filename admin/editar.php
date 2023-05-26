@@ -6,10 +6,10 @@ $erro = "";
 
 if(isset($_SESSION['dados'])){
   if(isset($_GET['id'])){
-    require_once('classes/Produto.class.php'); 
+    require_once('../admin/classes/Produto.class.php'); 
     
-    $p = new produto(); 
-    $c->id = $_GET['id']; 
+    $p = new Produto(); 
+    $p->id = $_GET['id']; 
     
     $resultado = $p->BuscarPorID(); 
     
@@ -49,23 +49,23 @@ if(isset($_SESSION['dados'])){
       </div>
       <div class="form-group">
         <label for="foto">Foto:</label>
-        <input value="<?=$resultado[0]["foto"] ?>" type="email" class="form-control" id="email" name="email">
+        <input value="<?=$resultado[0]["foto"] ?>" type="file" class="form-control" id="foto" name="foto">
       </div>
       <div class="form-group">
         <label for="descricao">Descrição:</label>
-        <input value="<?=$resultado[0]["descricao"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["descricao"] ?>" type="text" class="form-control" id="descricao" name="descricao">
       </div>
       <div class="form-group">
         <label for="categoria">Categoria:</label>
-        <input value="<?=$resultado[0]["categoria"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["categoria"] ?>" type="text" class="form-control" id="categoria" name="categoria">
       </div>
       <div class="form-group">
         <label for="estoque">Estoque:</label>
-        <input value="<?=$resultado[0]["estoque"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["estoque"] ?>" type="int" class="form-control" id="estoque" name="estoque">
       </div>
       <div class="form-group">
         <label for="preco">Preço:</label>
-        <input value="<?=$resultado[0]["preco"] ?>" type="tel" class="form-control" id="telefone" name="telefone">
+        <input value="<?=$resultado[0]["preco"] ?>" type="int" class="form-control" id="preco" name="preco">
       </div>
       <input value="<?=$resultado[0]["id"] ?>" type="hidden" name="id" id="id">
       <button type="submit" class="btn btn-primary">Editar</button>
