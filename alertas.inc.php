@@ -30,7 +30,7 @@ $erro = [
             .then((willDelete) => {
                 if (willDelete) {
                     // Redirecionar para o apagar:
-                    window.location.href = "actions/apagar.php?id=" + id;
+                    window.location.href = "actions/deletar.php?id=" + id;
                 }
             });
     }
