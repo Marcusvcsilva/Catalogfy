@@ -8,9 +8,10 @@ class Produto{
     public $descricao;
     public $preco;
     public $foto;
-    public $data_cadastro;
     public $id_categoria;
     public $id_usuario;
+    public $data_cadastro;
+
 
     public function Cadastrar(){
         $sql = "INSERT INTO produtos (nome, estoque, descricao, preco, foto, id_categoria, id_usuario) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -58,7 +59,7 @@ class Produto{
 
     public function BuscarPorID(){
         $banco = Banco::conectar();
-        $sql = "SELECT * FROM produtos WHERE id = ?";
+        $sql = "SELECT * FROM view_produtos WHERE id = ?";
         $comando = $banco->prepare($sql);
         $comando->execute(array($this->id));
         // "Salvar" o resultado da consulta (tabela) na $resultado
