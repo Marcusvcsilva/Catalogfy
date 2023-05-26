@@ -3,7 +3,7 @@
     session_start();
     if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_SESSION['dados'])){
         // Importar a classe:
-        require_once('../classes/Categoria.class.php');
+        require_once('../admin/classes/Categoria.class.php');
         // Instanciar um obj do tipo contato:
         $c = new Categoria();
 
@@ -12,7 +12,7 @@
         $c->Cadastrar();
         // echo "Contato cadastrado com sucesso!";
         // Redirecionar o jovem de volta à agenda:
-        header('Location: ../painel.php?msg=0');
+        header('Location: ../admin/painel.php?msg=0');
         exit();
     }else{
         echo "Você precisa estar logado e essa página deve ser carregada por POST!";
