@@ -17,7 +17,7 @@ class Categoria{
     }
     public function Listar(){
         $banco = Banco::conectar();
-        $sql = "SELECT * FROM view_produtos";
+        $sql = "SELECT * FROM categorias";
         $comando = $banco->prepare($sql);
         $comando->execute();
         // "Salvar" o resultado da consulta (tabela) na $resultado
