@@ -61,11 +61,11 @@ if(isset($_SESSION['dados'])){
       </div>
       <div class="form-group">
         <label for="estoque">Estoque:</label>
-        <input value="<?=$resultado[0]["estoque"] ?>" type="int" class="form-control" id="estoque" name="estoque">
+        <input value="<?=$resultado[0]["estoque"] ?>" type="estoque" class="form-control" id="estoque" name="estoque">
       </div>
       <div class="form-group">
         <label for="preco">Preço:</label>
-        <input value="<?=$resultado[0]["preco"] ?>" type="int" class="form-control" id="preco" name="preco">
+        <input value="<?=$resultado[0]["preco"] ?>" type="preco" class="form-control" id="preco" name="preco">
       </div>
       <input value="<?=$resultado[0]["id"] ?>" type="hidden" name="id" id="id">
       <button type="submit" class="btn btn-primary">Editar</button>
