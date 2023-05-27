@@ -7,20 +7,21 @@ require_once('../admin/classes/Produto.class.php');
 
 $p = new Produto();
 
-$p->nome = $_POST['nome'];
-$p->estoque = $_POST['estoque'];
-$p->descricao = $_POST['descricao'];
-$p->preco = $_POST['preco'];
-$p->id_categoria = $_POST['id_categoria'];
-$p->id_usuario = $_SESSION['dados']['id'];
+$p->id = $_POST['id'];
 
-// Valor temporário
-$p->foto = "semfoto.jpg";
+$p->nome = $_POST['nome'];
+
+$p->foto = $_POST['foto'];
+
+$p->descricao = $_POST['descricao'];
+
+$p->id_categoria = $_POST['id_categoria'];
+
+$p->estoque = $_POST['estoque'];
+
+$p->preco = $_POST['preco'];
 
 // puxar as categorias
-require_once('../admin/classes/Categoria.class.php');
-$c = new Categoria();
-$categorias = $c->Listar();
 
 if($p->Atualizar() == 1 ){
     // Caso dê certo
