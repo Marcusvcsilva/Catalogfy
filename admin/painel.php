@@ -65,7 +65,7 @@ $categorias = $c->Listar();
                 <?php foreach($resultado as $produto){ ?>
                 <tr>
                     <td><?=$produto['id'];?></td>
-                    <td><img src="../img/<?=$produto['foto'];?>" alt="<?= $produto['nome']; ?>"></td>
+                    <td><img src="../img/<?=$produto['foto'];?>" width="200px" alt="<?= $produto['nome']; ?>"></td>
                     <td><?=$produto['nome'];?></td>
                     <td><?=$produto['descricao'];?></td>
                     <td><?=$produto['categoria'];?></td>
