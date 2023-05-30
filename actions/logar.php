@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: ../admin/painel.php");
         exit();
     } else {
-
         header('Location: ../admin/index.php');
         exit();
     }
