@@ -57,7 +57,7 @@ if(isset($_SESSION['dados'])){
       </div>
       <div class="form-group">
         <label for="categoria">Categoria:</label>
-        <input value="<?=$resultado[0]["categoria"] ?>" type="text" class="form-control" id="categoria" name="categoria">
+        <input value="<?=$resultado[0]["categoria"] ?>" type="text" class="form-control" id="categoria" name="id_categoria">
       </div>
       <div class="form-group">
         <label for="estoque">Estoque:</label>
