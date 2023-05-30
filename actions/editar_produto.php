@@ -3,7 +3,7 @@
 session_start();
 // Verificar se a sessão NÃO existe: 
 if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_SESSION['dados'])){
-require_once('../admin/classes/Produto.class.php');
+require_once('../classes/Produto.class.php');
 
 $p = new Produto();
 
